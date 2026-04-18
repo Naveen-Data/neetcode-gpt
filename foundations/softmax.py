@@ -8,15 +8,10 @@ class Solution:
         # z is a 1D NumPy array of logits
         # Hint: subtract max(z) for numerical stability before computing exp
         # return np.round(your_answer, 4)
-        maxm = np.max(z)
-        exps = []
-        res =[]
-        for i in z:
-            exps.append(np.e**(i-maxm))
-        for i in exps:
-            res.append(i/np.sum(exps))
-        
-        return np.round(res,4)
+        z -= np.max(z)
+        np.exp(z, out=z)
+        z /= np.sum(z)
+        return np.round(z, 4)
 
 
         
